@@ -105,6 +105,7 @@ textarea {
   }
   body {
       position: relative;
+      background-color: #999;
   }
 
   /* -------- pre loader css ------ */

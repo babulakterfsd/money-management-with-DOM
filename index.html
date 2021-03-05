@@ -39,10 +39,127 @@
   <![endif]-->
 
 
+<!--   Balance Container SEction  -->
+<section id="balance-container" class="bg-white">
+  <div class="container py-3">
+    <div class="row">
+      <div class="col-12 mb-md-5">
+        <h2 class="text-center"><ins>Money Management System</ins></h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 d-flex justify-content-center">
+         <form action="index.html" id="totalincomeform">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Total Income</span>
+            </div>
+            <input type="text" class="form-control text-center text-success font-weight-bold" id="totalincomeinput" value="25000" disabled>
+          </div>
+         </form>
+      </div>
+      <div class="col-md-4 d-flex justify-content-center">
+        <form action="index.html" id="totalexpenseform">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Total Expense</span>
+            </div>
+            <input type="text" id="totalexpenseinput" class=" form-control text-center font-weight-bold text-danger" value="000" disabled>
+          </div>
+         </form>
+      </div>
+      <div class="col-md-4 d-flex justify-content-center">
+        <form action="index.html" id="currentbalanceform">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Current Balance</span>
+            </div>
+            <input type="text" class="form-control text-center font-weight-bold text-success" id="currentbalanceform" value="25000" disabled>
+          </div>
+         </form>
+      </div>
+    </div>
+  </div>
+</section>
 
-  
 
-  
+<!--   New Transaction SEction  -->
+<section id="new-transaction-container" class="bg-white mt-md-5 p-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="text-center"><ins>New Transactions</ins></h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 mt-md-5">
+         <h4 class="text-center"><ins>Income</ins></h4>
+         <form action="index.html" id="addincomeform">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Source of Income</span>
+            </div>
+            <input type="text" class="form-control" id="sourceofincome">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Amout of Income</span>
+            </div>
+            <input type="number" class="form-control" id="amountofincome">
+          </div>
+          <div class="input-group mb-3">
+            <input type="submit" class="btn btn-success" id="submitincome" value="Add Income">
+          </div>
+         </form>
+      </div>
+      <div class="col-lg-6 mt-md-5">
+        <h4 class="text-center"><ins>Expense</ins></h4>
+        <form action="index.html" id="subexpenseform">
+         <div class="input-group mb-3">
+           <div class="input-group-prepend">
+             <span class="input-group-text">Source of Expense</span>
+           </div>
+           <input type="text" class="form-control" id="subexpensesrcinput">
+         </div>
+         <div class="input-group mb-3">
+           <div class="input-group-prepend">
+             <span class="input-group-text">Amout You Spend</span>
+           </div>
+           <input type="number" class="form-control" id="subexpenseamountinput">
+         </div>
+         <div class="input-group mb-3">
+           <input type="submit" class="btn btn-danger" id="submitexpense" value="Subtract Expense">
+         </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!--   Transaction History SEction  -->
+<section id="transaction-history-container" class="bg-white mt-md-5 p-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="text-center mb-lg-5"><ins>Transaction History</ins></h2>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="col-8">
+        <form action="index.html" id="transactionsearchform">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Search transaction</span>
+            </div>
+            <input type="text" class="form-control text-center" id="searchtransactioninput" placeholder="ex: job salary">
+          </div>
+         </form>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 

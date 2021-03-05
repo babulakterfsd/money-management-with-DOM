@@ -106,10 +106,12 @@ textarea {
   body {
       position: relative;
       background-color: #999;
+      background-image: url(../images/money.jpg);
   }
  #balance-container input {
       height: 60px !important;
   }
+
 
   /* -------- pre loader css ------ */
 

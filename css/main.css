@@ -107,6 +107,9 @@ textarea {
       position: relative;
       background-color: #999;
   }
+ #balance-container input {
+      height: 60px !important;
+  }
 
   /* -------- pre loader css ------ */
 
@@ -118,7 +121,6 @@ textarea {
 
 
    /* --------- body style -------- */
-
 
 
 

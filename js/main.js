@@ -19,14 +19,11 @@ addincomeform.addEventListener(`submit`,function(e) {
     if(incomevalue < 0) {
         alert(`Income can't be negative`)
     } else {
-        let previousamount = Number(totalincome.innerText);
-        totalincome.innerText = previousamount + incomevalue;
-         
-        let totalamount = Number(totalincome.innerText);
-        currentamount += totalamount;
-        console.log(`total income: ${totalamount} is a ${typeof totalamount}`);
-        console.log(`current amount: ${currentamount} is a ${typeof currentamount}`);
-        currentbalance.innerText = currentamount;
+        let previousvalueoftotal = +totalincome.innerText;
+        let currentBalance = +currentbalance.innerText;
+
+        totalincome.innerText = previousvalueoftotal + incomevalue;
+        currentbalance.innerText = currentBalance + incomevalue;
     }
     e.target.reset()
 })

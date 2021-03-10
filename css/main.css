@@ -124,8 +124,12 @@ textarea {
 
    /* --------- body style -------- */
 
-
-
+.plus {
+    border-left: 15px outset green;
+}
+.minus {
+    border-left: 15px solid red;
+}
 
 
 

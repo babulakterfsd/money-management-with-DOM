@@ -9,6 +9,7 @@ let obj = {
 
 //current Balance
 let currentBalanceElement = document.getElementById(`currentbalance`);
+let ul = document.getElementById(`myul`);
 
 //Income 
 let totalIncomeOutput = document.getElementById(`totalincome`);
@@ -38,6 +39,7 @@ incomeInputForm.addEventListener(`submit`,function(e) {
     list.push(JSON.parse(JSON.stringify(obj)))
     createLi(list);
     e.target.reset();
+    removeLi()
 })
 
 
@@ -66,13 +68,13 @@ spentOutputForm.addEventListener(`submit`,function(e) {
         currentBalanceElement.innerText = totalIncomeOutput.innerText - totalSpentOutput.innerText;
     }
     list.push(JSON.parse(JSON.stringify(obj)))
-    createLi(list)
+    createLi(list);
     e.target.reset();
+    removeLi()
 })
 
-//additional functions
+//create Li
 function createLi(arr) {
-    let ul = document.getElementById(`myul`);
     ul.innerHTML = ``;
     arr.forEach(data => {
         let li = document.createElement(`li`);
@@ -81,7 +83,7 @@ function createLi(arr) {
          `<span class="text-center font-weight-bold">${data.source}</span>
          <span class="text-center font-weight-bold">${data.amount}</span>
          <div class="imgcontainer bg-white p-1">
-         <img src="./images/delete.png" alt="delete" title="delete item" style="height: 25px; min-width: 25px; cursor: pointer;" class="img-fluid">
+         <img src="./images/delete.png" alt="delete" title="delete item" style="height: 25px; min-width: 25px; cursor: pointer;" class="img-fluid remover">
          </div>`;
          if(data.inputFrom == `income`) {
              li.classList.add(`plus`)
@@ -90,4 +92,17 @@ function createLi(arr) {
          }
         ul.appendChild(li)
     })
+}
+
+//remove LI
+function removeLi() {
+    let target = document.getElementsByClassName(`remover`);
+    if(target.length > 0) {
+        for(let i = 0; i < target.length; i++) {
+            target[i].addEventListener(`click`, function(e) {
+                let rmv = e.target.parentElement.parentElement;
+                rmv.remove()
+            })
+        }
+    }
 }

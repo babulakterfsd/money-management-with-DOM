@@ -78,7 +78,7 @@ function createLi(arr) {
     ul.innerHTML = ``;
     arr.forEach(data => {
         let li = document.createElement(`li`);
-        li.classList.add(`list-group-item`,`d-flex`,`justify-content-center`,`justify-content-sm-between`, `align-items-center`);
+        li.classList.add(`list-group-item`,`d-flex`,`justify-content-center`,`justify-content-sm-between`, `align-items-center`,`myli`);
         li.innerHTML = 
          `<span class="text-center font-weight-bold">${data.source}</span>
          <span class="text-center font-weight-bold">${data.amount}</span>
@@ -108,3 +108,14 @@ function removeLi() {
 }
 
 // history search
+let searchForm = document.getElementById(`transactionsearchform`);
+searchForm.addEventListener(`submit`,function(e) {
+    e.preventDefault();
+})
+
+let searchInput = document.getElementById(`searchtransactioninput`);
+searchInput.addEventListener(`keyup`, function(e) {
+    let inputValue = e.target.value.trim().toLowerCase();
+    let filterArray = list.filter(obj => obj.source.toLowerCase().includes(inputValue))
+    createLi(filterArray)
+})

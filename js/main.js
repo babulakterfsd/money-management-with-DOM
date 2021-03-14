@@ -1,8 +1,14 @@
 'use strict';
 
+let list = [];
+let obj = {
+     source: ``,
+     amount: 0,
+     inputFrom: ``
+}
+
 //current Balance
 let currentBalanceElement = document.getElementById(`currentbalance`);
-let currentAmount = +currentBalanceElement;
 
 //Income 
 let totalIncomeOutput = document.getElementById(`totalincome`);
@@ -10,93 +16,78 @@ let incomeInputForm = document.getElementById(`addincomeform`);
 let incomeSourceInput = document.getElementById(`sourceofincome`);
 let incomeAmountInput = document.getElementById(`amountofincome`);
 
-let incomeList = [];
-let incomeObject = {
-     incomeSource: ``,
-     incomeAmount: 0
-}
-
 incomeSourceInput.addEventListener(`keyup`,function(e) {
-    incomeObject.incomeSource = e.target.value;
+    obj.source = e.target.value;
+    obj.inputFrom = `income`;
 })
 incomeAmountInput.addEventListener(`keyup`,function(e) {
     let income = e.target.value;
-    incomeObject.incomeAmount = +income;
+    obj.amount = +income;
 })
 incomeInputForm.addEventListener(`submit`,function(e) {
     e.preventDefault();
-    if(incomeObject.incomeAmount <= 0 || incomeObject.incomeAmount == undefined || incomeObject.incomeSource == `` ) {
+    if(obj.amount <= 0 || obj.amount == undefined || obj.source == `` ) {
         alert(`Income can't be negative or empty or source is empty`)
     } else {
         let previousTotalIncome = +totalIncomeOutput.innerText;
         let previousCurrentBalance = +currentBalanceElement.innerText;
 
-        totalIncomeOutput.innerText = previousTotalIncome + incomeObject.incomeAmount;
-        currentBalanceElement.innerText = previousCurrentBalance + incomeObject.incomeAmount;
+        totalIncomeOutput.innerText = previousTotalIncome + obj.amount;
+        currentBalanceElement.innerText = previousCurrentBalance + obj.amount;
     }
-    createIncomeLi();
+    list.push(JSON.parse(JSON.stringify(obj)))
+    createLi(list);
     e.target.reset();
 })
 
 
 //Spent
-let spentList = [];
-let spentObject = {
-    spentSource: ``,
-    spentAmount: 0
-}
 let totalSpentOutput = document.getElementById(`totalspent`);
 let spentOutputForm = document.getElementById(`subexpenseform`);
 let spentSourceInput = document.getElementById(`subexpensesrcinput`);
 let spentAmountInput = document.getElementById(`subexpenseamountinput`);
 
 spentSourceInput.addEventListener(`keyup`,function(e) {
-    spentObject.spentSource = e.target.value;
+    obj.source = e.target.value;
+    obj.inputFrom = `spent`
 })
 spentAmountInput.addEventListener(`keyup`,function(e) {
     let spent = e.target.value;
-    spentObject.spentAmount = +spent;
+    obj.amount = +spent;
 })
 spentOutputForm.addEventListener(`submit`,function(e) {
     e.preventDefault();
-    if(spentObject.spentAmount <= 0 || spentObject.spentAmount == undefined || spentObject.spentSource == ``) {
+    if(obj.amount <= 0 || obj.amount == undefined || obj.source == ``) {
         alert(`spent value can't be 0 or undefined or spent source is undefined`)
     } else {
         let previouSpent = +totalSpentOutput.innerText;
-        totalSpentOutput.innerText = previouSpent + spentObject.spentAmount;
+        totalSpentOutput.innerText = previouSpent + obj.amount;
 
         currentBalanceElement.innerText = totalIncomeOutput.innerText - totalSpentOutput.innerText;
     }
-    createSpentLi();
+    list.push(JSON.parse(JSON.stringify(obj)))
+    createLi(list)
     e.target.reset();
 })
 
-
-//functions to create elements and modify DOM
-function createIncomeLi() {
+//additional functions
+function createLi(arr) {
     let ul = document.getElementById(`myul`);
-    let li = document.createElement(`li`)
-    li.classList.add(`list-group-item`,`d-flex`,`justify-content-center`,`justify-content-sm-between`, `align-items-center`);
-    li.style.borderLeft = `10px solid green`;
-    li.innerHTML = 
-    `<span class="text-center font-weight-bold">${incomeObject.incomeSource}</span>
-    <span class="text-center font-weight-bold">${incomeObject.incomeAmount}</span>
-    <div class="imgcontainer bg-white p-1">
-      <img src="./images/delete.png" alt="delete" title="delete item" style="height: 25px; min-width: 25px; cursor: pointer;" class="img-fluid">
-    </div>`;
-    ul.appendChild(li)
-}
-
-function createSpentLi() {
-    let ul = document.getElementById(`myul`);
-    let li = document.createElement(`li`)
-    li.classList.add(`list-group-item`,`d-flex`,`justify-content-center`,`justify-content-sm-between`, `align-items-center`);
-    li.style.borderLeft = `10px solid red`;
-    li.innerHTML = 
-    `<span class="text-center font-weight-bold">${spentObject.spentSource}</span>
-    <span class="text-center font-weight-bold">${spentObject.spentAmount}</span>
-    <div class="imgcontainer bg-white p-1">
-      <img src="./images/delete.png" alt="delete" title="delete item" style="height: 25px; min-width: 25px; cursor: pointer;" class="img-fluid">
-    </div>`;
-    ul.appendChild(li)
+    ul.innerHTML = ``;
+    arr.forEach(data => {
+        let li = document.createElement(`li`);
+        li.classList.add(`list-group-item`,`d-flex`,`justify-content-center`,`justify-content-sm-between`, `align-items-center`);
+        li.innerHTML = 
+         `<span class="text-center font-weight-bold">${data.source}</span>
+         <span class="text-center font-weight-bold">${data.amount}</span>
+         <div class="imgcontainer bg-white p-1">
+         <img src="./images/delete.png" alt="delete" title="delete item" style="height: 25px; min-width: 25px; cursor: pointer;" class="img-fluid">
+         </div>`;
+         if(data.inputFrom == `income`) {
+             li.classList.add(`plus`)
+         } else if(data.inputFrom == `spent`) {
+             li.classList.add(`minus`)
+         }
+        ul.appendChild(li)
+    })
 }
